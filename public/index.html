@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WhatsApp Scheduler</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <div class="logo-icon">W</div>
+                <div>
+                    <h2>WA Scheduler</h2>
+                    <span>Message Automation</span>
+                </div>
+            </div>
+
+            <nav class="nav">
+
+                <a href="#" class="nav-item active">
+                    <span>⌂</span>
+                    Dashboard
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span>◷</span>
+                    Scheduled
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span>✓</span>
+                    Sent Messages
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span>⚙</span>
+                    Settings
+                </a>
+
+            </nav>
+
+            <div class="connection-box">
+
+                <div class="connection-status">
+                    <span class="status-dot"></span>
+
+                    <div>
+                        <strong>WhatsApp</strong>
+                        <p>Not Connected</p>
+                    </div>
+                </div>
+
+                <button class="connect-btn">
+                    Connect WhatsApp
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- Main -->
+        <main class="main">
+
+            <!-- Header -->
+            <header class="header">
+
+                <div>
+                    <p class="small-title">WELCOME BACK</p>
+                    <h1>Message Scheduler</h1>
+                    <p class="subtitle">
+                        Schedule your WhatsApp messages effortlessly.
+                    </p>
+                </div>
+
+                <div class="header-right">
+
+                    <div class="system-status">
+                        <span></span>
+                        Scheduler Idle
+                    </div>
+
+                    <div class="avatar">
+                        Y
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- Stats -->
+            <section class="stats">
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">◷</div>
+
+                    <div>
+                        <p>Scheduled</p>
+                        <h2 id="scheduledCount">0</h2>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon green">✓</div>
+
+                    <div>
+                        <p>Sent Today</p>
+                        <h2 id="sentCount">0</h2>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">!</div>
+
+                    <div>
+                        <p>Pending</p>
+                        <h2 id="pendingCount">0</h2>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- Content -->
+            <section class="content-grid">
+
+                <!-- Create Schedule -->
+                <div class="card schedule-card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h2>Create Schedule</h2>
+                            <p>
+                                Set a message and choose when it should be sent.
+                            </p>
+                        </div>
+
+                        <div class="header-icon">
+                            +
+                        </div>
+
+                    </div>
+
+
+                    <form id="scheduleForm">
+
+                        <div class="form-group">
+
+                            <label for="contact">
+                                Contact
+                            </label>
+
+                            <input
+                                type="text"
+                                id="contact"
+                                placeholder="e.g. +91 9876543210"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="message">
+                                Message
+                            </label>
+
+                            <textarea
+                                id="message"
+                                placeholder="Write your message..."
+                                maxlength="500"
+                                required
+                            ></textarea>
+
+                            <div class="character-count">
+                                <span id="characterCount">0</span>/500
+                            </div>
+
+                        </div>
+
+
+                        <div class="date-time">
+
+                            <div class="form-group">
+
+                                <label for="date">
+                                    Date
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="date"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="time">
+                                    Time
+                                </label>
+
+                                <input
+                                    type="time"
+                                    id="time"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="schedule-btn"
+                        >
+                            <span>◷</span>
+                            Schedule Message
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <!-- Preview -->
+                <div class="card preview-card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h2>Message Preview</h2>
+                            <p>See how your message will look.</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="phone">
+
+                        <div class="phone-header">
+
+                            <div class="contact-avatar">
+                                ?
+                            </div>
+
+                            <div>
+                                <strong id="previewContact">
+                                    Contact
+                                </strong>
+
+                                <span>WhatsApp</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="chat">
+
+                            <div class="message-bubble">
+
+                                <p id="previewMessage">
+                                    Your message will appear here...
+                                </p>
+
+                                <small>
+                                    10:00 AM ✓✓
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Scheduled Messages -->
+            <section class="card messages-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h2>Scheduled Messages</h2>
+                        <p>
+                            Messages waiting to be sent.
+                        </p>
+                    </div>
+
+                    <button class="view-btn">
+                        View All
+                    </button>
+
+                </div>
+
+
+                <div id="emptyState" class="empty-state">
+
+                    <div class="empty-icon">
+                        ◷
+                    </div>
+
+                    <h3>No scheduled messages</h3>
+
+                    <p>
+                        Create your first scheduled WhatsApp message above.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="messageList"
+                    class="message-list"
+                ></div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
