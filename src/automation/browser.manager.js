@@ -1,4 +1,5 @@
 import { chromium } from "playwright";
+import { env } from "../config/env.js";
 
 let context = null;
 
@@ -12,13 +13,15 @@ const getBrowser = async () => {
         }
     }
 
-    context = await chromium.launchPersistentContext(
-        "./whatsapp-session",
-        {
-            headless: false,
-            channel: "chrome"
-        }
-    );
+    const browserOptions = {
+        headless: env.browserHeadless,
+    };
+
+    if (env.browserChannel) {
+        browserOptions.channel = env.browserChannel;
+    }
+
+    context = await chromium.launchPersistentContext(env.whatsappSessionPath, browserOptions);
 
     return context;
 };

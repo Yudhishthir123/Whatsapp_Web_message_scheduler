@@ -38,6 +38,10 @@ app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 
+app.get("/health", (req, res) => {
+    res.status(200).json({ success: true, message: "OK" });
+});
+
 app.use("/api/v1/schedules", ScheduleRouter);
 app.use("/api/v1/messages", MessageRouter);
 app.use("/api/v1/browser", BrowserRouter);

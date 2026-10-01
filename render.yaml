@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: whatsapp-message-scheduler
+    runtime: node
+    plan: free
+    buildCommand: npm install && npx playwright install chromium
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: MONGODB_URL
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
+      - key: BROWSER_HEADLESS
+        value: "true"
+      - key: WHATSAPP_SESSION_PATH
+        value: ./whatsapp-session
