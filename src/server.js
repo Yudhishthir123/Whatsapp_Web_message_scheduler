@@ -9,7 +9,7 @@ connectDB()
         schedulerJob();
 
         app.listen(env.port, env.host, () => {
-            console.log(`App is listening on ${env.host}:${env.port}`);
+            console.log(`App is listening on ${env.host}`);
         })
     })
     .catch((err) => {

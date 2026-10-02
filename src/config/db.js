@@ -7,7 +7,7 @@ const connectDB = async () => {
         throw new Error("MONGODB_URL is not configured");
     }
 
-    const connectionInstance = await mongoose.connect(`${env.mongoUrl.replace(/\/$/, "")}/${DB_NAME}`);
+    const connectionInstance = await mongoose.connect(env.mongoUrl, { dbName: DB_NAME });
     console.log(`MongoDB connected successfully !! HOST : ${connectionInstance.connection.host}`);
 };
 
